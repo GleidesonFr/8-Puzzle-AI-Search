@@ -19,8 +19,8 @@ public class EightPuzzleInterface extends Application{
 
     private Button[][] buttons = new Button[3][3];
     private int[][] board = new int[3][3];
-    private Button breadthButton = new Button("Busca em largura");
-    private Button depthButton = new Button("Busca em Largura");
+    private Button breadthButton = new Button("Busca em Largura");
+    private Button depthButton = new Button("Busca em Profundidade");
     private Button aStar = new Button("A-Star");
     private int emptyRow, emptyCol;
 
