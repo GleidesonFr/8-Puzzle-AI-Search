@@ -79,11 +79,21 @@ public class EightPuzzleInterface extends Application{
                 int row = i;
                 int col = j;
 
-                button.setOnAction(e -> moveTile(row, col));
+                button.setOnAction(e -> setButtonValue(row, col));
                 buttons[i][j] = button;
                 grid.add(button, j, i);
                 System.out.println("Passou");
             }
+        }
+    }
+
+    private void setButtonValue(int row, int col) {
+        if(board[row][col] + 1 == 9){
+            board[row][col] = 0;
+            buttons[row][col].setText("");
+        }else{
+            board[row][col] = board[row][col] + 1;
+            buttons[row][col].setText(String.valueOf(board[row][col]));
         }
     }
 
