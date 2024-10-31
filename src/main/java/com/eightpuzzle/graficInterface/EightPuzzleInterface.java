@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.eightpuzzle.BreadthSearch;
+import com.eightpuzzle.Node;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -79,12 +82,25 @@ public class EightPuzzleInterface extends Application{
                 int row = i;
                 int col = j;
 
+                breadthButton.setOnAction(e -> breadthSearch());
                 button.setOnAction(e -> setButtonValue(row, col));
                 buttons[i][j] = button;
                 grid.add(button, j, i);
                 System.out.println("Passou");
             }
         }
+    }
+
+    private void breadthSearch() {
+        BreadthSearch breadthSearch = new BreadthSearch();
+        Node node = new Node(board, emptyRow, emptyCol);
+        Node nodeTarget = new Node(goal, 3, 3);
+
+        while(!node.equals(nodeTarget)){
+            node = breadthSearch.breadthSearchAlgorithm(board, goal);
+            board = node.getMatrix();
+        }
+        
     }
 
     private void setButtonValue(int row, int col) {
@@ -97,7 +113,7 @@ public class EightPuzzleInterface extends Application{
         }
     }
 
-    private void moveTile(int row, int col) {
+    public void moveTile(int row, int col) {
         if((Math.abs(emptyRow - row) == 1 && emptyCol == col) || (Math.abs(emptyCol - col) == 1 && emptyRow == row)){
             board[emptyRow][emptyCol] = board[row][col];
             board[row][col] = 0;
